@@ -7,6 +7,6 @@ semua kode yang ada di dalam file yang di extend -->
 <!-- halaman dashboard adalah anak dari si parent/orangtua -->
 
 @section('content')
-<h1 style="text-align: center">Ini adalah halaman dashboard</h1>
+
 @endsection
 

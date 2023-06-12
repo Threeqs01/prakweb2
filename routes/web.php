@@ -5,6 +5,9 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\InputController;
 use App\Http\Controllers\FormController;
 use App\Htpp\Controllers\UserController;
+use App\Htpp\Controllers\DashboardFrontendController;
+use App\Http\Controllers\PesananController;
+
 // use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,9 +55,12 @@ Route::post('/output', [InputController::class, 'output']);
 Route::prefix('admin')->group(function () {
 Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::get('/produk', [ProdukController::class, 'index']);
+Route::get('/produk', [PesananController::class, 'index']);
+Route::get('/produk/create', [ProdukController::class, 'create']);
+Route::post('/produk/store', [ProdukController::class, 'store']);
 });
 
 // ini route untuk frontend atau user
 Route::prefix('frontend')->group(function () {
     Route::get('/dashboard', [DashboardFrontendController::class, 'index']);
-    Route::get('/about', [AboutController::class, 'index']);
+});
