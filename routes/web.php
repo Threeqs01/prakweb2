@@ -55,7 +55,7 @@ Route::post('/output', [InputController::class, 'output']);
 Route::prefix('admin')->group(function () {
 Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::get('/produk', [ProdukController::class, 'index']);
-Route::get('/produk', [PesananController::class, 'index']);
+Route::get('/pesanan', [PesananController::class, 'index']);
 Route::get('/produk/create', [ProdukController::class, 'create']);
 Route::post('/produk/store', [ProdukController::class, 'store']);
 });
