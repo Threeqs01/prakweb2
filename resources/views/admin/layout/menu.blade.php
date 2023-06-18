@@ -21,7 +21,7 @@
                                     
                                     <a class="nav-link" href="{{ url('admin/produk') }}">Produk</a>
                                     <a class="nav-link" href="#">Kategori Produk</a>
-                                    <a class="nav-link" href="#">Pesanan</a>
+                                    <a class="nav-link" href="{{ url('admin/pesanan') }}">Pesanan</a>
                                 </nav>
                             </div>
                             

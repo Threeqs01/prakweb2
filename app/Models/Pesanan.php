@@ -24,7 +24,7 @@ class Pesanan extends Model
         'produk_id',
     ];
 
-    public function pesanan(){
+    public function produk(){
         return $this->belongTo(Produk::class);
     }
 

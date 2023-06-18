@@ -16,9 +16,6 @@ semua kode yang ada di dalam file yang di extend -->
         </ol>
     <div class="card mb-4">
         <div class="card-header">
-            <a href="{{ url('admin/produk/create') }}" class="btn btn-primary">Tambah Data</a>
-        </div>
-        <div class="card-header">
             <i class="fas fa-table me-1"></i>
             Data Pesanan
         </div>
