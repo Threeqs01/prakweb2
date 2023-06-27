@@ -7,7 +7,8 @@ semua kode yang ada di dalam file yang di extend -->
 <!-- halaman dashboard adalah anak dari si parent/orangtua -->
 
 @section('content')
-<main>
+@if (Auth::user()->role != 'pelanggan')
+
     <div class="container-fluid px-4">
         <h1 class="mt-4">Tables</h1>
         <ol class="breadcrumb mb-4">
@@ -16,11 +17,15 @@ semua kode yang ada di dalam file yang di extend -->
         </ol>
     <div class="card mb-4">
         <div class="card-header">
-            <a href="{{ url('admin/produk/create') }}" class="btn btn-primary">Tambah Data</a>
+        @if (Auth::user()->role == 'admin')
+            <a href="{{ url('admin/produk/create') }}" class="btn btn-primary">Tambah Data Produk</a>
+        @endif
         </div>
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
             Data Produk
+        </div>
+        <div class="card-header">
         </div>
     <div class="card-body">
         <table id="datatablesSimple">
@@ -54,7 +59,9 @@ semua kode yang ada di dalam file yang di extend -->
                     <td>{{ $prod->deskripsi }}</td>
                     <td>{{ $prod->nama_kategori }}</td>
                     <td><a href="{{ url('admin/produk/edit/'. $prod->id) }}" class="btn btn-success">Edit</a></td>
+                    @if (Auth::user()->role == 'admin')
                     <td><a href="{{ url('admin/produk/delete/'. $prod->id) }}" class="btn btn-danger">Delete</a></td>
+                    @endif
                 </tr>
                 @php 
                     $no++
@@ -64,6 +71,9 @@ semua kode yang ada di dalam file yang di extend -->
             </table>
         </div>
     </div>
-</div>                       
+</div>     
+@else
+    @include('admin.access_denied')
+@endif                  
 @endsection
 

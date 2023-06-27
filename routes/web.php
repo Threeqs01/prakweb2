@@ -8,6 +8,7 @@ use App\Htpp\Controllers\UserController;
 use App\Http\Controllers\KategoriProdukController;
 use App\Htpp\Controllers\DashboardFrontendController;
 use App\Http\Controllers\PesananController;
+use Illuminate\Support\Facades\Auth;
 
 // use Illuminate\Support\Facades\Route;
 
@@ -30,7 +31,7 @@ Route::get('/salam', function () {
     return "Selamat Siang Pak Rojul";
 }); 
 
-Route::get('/', function () {
+Route::get('/perkenalan', function () {
     return view('about', [
         "nama" => "Sulis",
         "umur" => 20,
@@ -53,6 +54,7 @@ Route::get('/input', [InputController::class, 'index']);
 Route::post('/output', [InputController::class, 'output']);
 
 // ini route untuk backend atau admin
+Route::group(['middleware' => ['auth', 'peran:admin-manager']], function(){
 Route::prefix('admin')->group(function () {
 Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::get('/produk', [ProdukController::class, 'index']);
@@ -71,12 +73,19 @@ Route::get('/pesanan/delete/{id}', [PesananController::class, 'destroy']);
 Route::get('/kategoriproduk/create', [KategoriProdukController::class, 'create']);
 Route::post('/kategoriproduk/store', [KategoriProdukController::class, 'store']);
 Route::get('/kategoriproduk/delete/{id}', [KategoriProdukController::class, 'destroy']); 
+Route::get('/logout', [DashboardController::class, 'logout']); 
 });
-
+});
 // ini route untuk frontend atau user
 Route::prefix('frontend')->group(function () {
     Route::get('/dashboard', [DashboardFrontendController::class, 'index']);
+    Route::get('/about', [AboutController::class, 'index']);
 });
+
+Route::get('/frontend', function(){
+    return view('frontend');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
